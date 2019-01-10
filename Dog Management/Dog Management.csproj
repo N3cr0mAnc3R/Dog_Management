@@ -199,6 +199,7 @@
     <Content Include="External\Assets\respond.js" />
     <Content Include="External\Assets\respond.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="hehehehe.js" />
     <Content Include="Scripts\Controllers\ProfileController.js" />
     <Content Include="Scripts\Controllers\SecurityCtrl.js" />
     <Content Include="Scripts\Modules\NotifierCtrl.js" />
