@@ -1,0 +1,233 @@
+﻿body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    color: #273f5c;
+
+    .navigation {
+        padding-left: 20px;
+        border-bottom: 1px solid rgba(10,10,10,0.2);
+        overflow: hidden;
+        height: 67px;
+        margin: 0;
+
+        li {
+            float: left;
+
+            a {
+                display: block;
+                padding: 20px 12px;
+                margin: 0 2px;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: #273f5c;
+
+                &:hover {
+                    border-bottom: 2px solid rgb(27, 174, 232);
+                }
+            }
+        }
+
+        .nav-profile {
+            float: right;
+            padding: 21px 30px;
+            width: 161px;
+            vertical-align: middle;
+            border-left: 1px solid rgba(10,10,10,0.2);
+
+            &:hover {
+                background-color: rgba(215,215,216,0.2);
+                cursor: pointer;
+
+                .dropdown-content {
+                    display: block;
+                }
+            }
+
+            .dropdown-content {
+                position: absolute;
+                display: none;
+                background-color: #fff;
+                min-width: 160px;
+                top: 67px; /*+4*/
+                right: 0px;
+                text-align: left;
+                z-index: 1;
+                border-left: 1px solid rgba(10,10,10,0.2);
+                border-right: 1px solid rgba(10,10,10,0.2);
+                border-bottom: 1px solid rgba(10,10,10,0.2);
+                border-radius: 0 0 5px 5px;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        right: 0;
+        left: unset;
+    }
+
+    .table {
+        .selected {
+            color: white;
+            background-color: rgb(52, 137, 242);
+        }
+    }
+
+    .header {
+        cursor: pointer;
+    }
+
+    .content-container {
+        position: fixed;
+        right: 0;
+        height: 100%;
+        padding: 10px;
+        width: 80%;
+        background-color: rgba(215,215,216,0.2);
+        overflow: auto;
+    }
+
+    .photo-less {
+        background-color: lightgray;
+        width: 150px;
+        height: 150px
+    }
+
+    .kernel-system {
+        display: none;
+
+        &.loaded {
+            display: block;
+        }
+
+        .kernel-system-notifications-overlay {
+            z-index: 1;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+            max-width: 100%;
+
+            &.ng-move,
+            &.ng-enter,
+            &.ng-leave {
+                transition: all linear 0.5s;
+            }
+
+            &.ng-leave.ng-leave-active,
+            &.ng-move,
+            &.ng-enter {
+                opacity: 0;
+            }
+
+            &.ng-leave,
+            &.ng-move.ng-move-active,
+            &.ng-enter.ng-enter-active {
+                opacity: 1;
+            }
+
+            .kernel-system-notifications-wrapper {
+                transition: all linear 1s;
+                margin-bottom: 10px;
+                margin-right: 10px;
+
+                .notification-wrapper {
+                    transition: all ease 0.6s;
+                    padding: 20px 20px 10px 10px;
+                    position: relative;
+                    text-align: right;
+
+                    .notification {
+                        padding: 20px;
+                        color: #fff;
+                        display: inline-block;
+                        text-align: center;
+                        -webkit-box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.2);
+                        -moz-box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.2);
+                        box-shadow: 0px 10px 10px -5px rgba(0,0,0,0.2);
+                        transition: 0.3s all;
+                        position: relative;
+
+                        .code {
+                            font-size: 24px;
+                            margin-right: 10px;
+                            border: 1px solid #fff;
+                            border-radius: 1px;
+                            display: inline-block;
+                            padding: 10px;
+                        }
+
+                        .body {
+                            font-size: 16px;
+                            display: inline-block;
+                        }
+
+                        .remove {
+                            position: absolute;
+                            top: -11px;
+                            right: -10px;
+                            border-radius: 50%;
+                            height: 22px;
+                            width: 21px;
+                            background: #666;
+                            cursor: pointer;
+
+                            .fa {
+                                color: #fff;
+                                font-size: 24px;
+                                font-weight: 100;
+                                display: block;
+                            }
+                        }
+                    }
+
+                    &.type-error {
+                        .notification {
+                            background: #dc3545;
+                            animation: 2s tremor ease-out;
+                            animation-iteration-count: infinite;
+                        }
+                    }
+
+                    &.type-success {
+                        .notification {
+                            background: #28a745;
+                            border-radius: 3px;
+                        }
+                    }
+
+                    &.ng-leave.ng-leave-active,
+                    &.ng-move,
+                    &.ng-enter {
+                        opacity: 0;
+                        transform: rotate(10deg) translateY(50px);
+                        right: -100%;
+                    }
+
+                    &.ng-leave,
+                    &.ng-move.ng-move-active,
+                    &.ng-enter.ng-enter-active {
+                        opacity: 1;
+                        transform: rotate(0) translateY(0);
+                        right: 0;
+                    }
+
+                    .generate-delays(20);
+
+                    .generate-delays(@n, @i: 1) when (@i =< @n) {
+                        &.delay-@{i} {
+                            transition-delay: @i / 20s;
+
+                            &.type-error {
+                                .notification {
+                                    animation-delay: 0.6s + @i / 20s;
+                                }
+                            }
+                        }
+
+                        .generate-delays(@n, (@i + 1));
+                    }
+                }
+            }
+        }
+    }
+}

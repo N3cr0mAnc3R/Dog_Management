@@ -1,0 +1,88 @@
+﻿<div class="content-container" ng-init="init()">
+    <div class="title-container">Мои собаки</div>
+    <div class="white-form">
+        <div>
+            <button ng-click="edit()" ng-disabled="!selectedRow" class="btn btn-outline-info">Редактировать</button>
+            <button ng-click="remove()" ng-disabled="!selectedRow" class="btn btn-outline-danger">Удалить</button>
+        </div>
+        <br />
+        <table class="table table-bordered table-hover">
+            <thead><tr><td>Имя</td><td>ВПКОС</td><td>Дата рождения</td></tr></thead>
+            <tbody>
+                <tr ng-repeat="dog in dogs" ng-class="{'selected': dog.Id == selectedRow}" class="header" ng-click="selectDog(dog.Id)">
+                    <td>{{dog.Name}}</td>
+                    <td>{{dog.LicenseNumber}}</td>
+                    <td>{{dog.DateOfBirth | date : 'dd.MM.yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+    </div>
+</div>
+
+<div style="position:unset;">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalTitle">Редактировать {{selectedDog.DogName}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Имя</label>
+                                <input type="text" class="form-control" id="name" ng-model="selectedDog.Name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="breed">Порода</label>
+                                <select class="form-control" ng-model="selectedDog.Breed.Id" ng-options="breed.Id as breed.Name for breed in breeds"></select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label class="col">Пол</label>
+
+                                <div class="col"><label><input type="radio" name="gender" ng-model="selectedDog.IsMale" ng-value="true">Кобель</label></div>
+                                <div class="col">
+                                    <label>
+                                        <input type="radio" name="gender" ng-model="selectedDog.IsMale" ng-value="false"> Сука
+                                    </label>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="name">Номер документа</label>
+                                <input type="text" class="form-control" id="number" ng-model="selectedDog.LicenseNumber">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="breed">Окрас</label>
+                                <select class="form-control" ng-model="selectedDog.Color.Id" ng-options="color.Id as color.Name for color in colors"></select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="gender">Дата Рождения</label>
+                                <input type="date" class="form-control" id="DateOfBirth" ng-model="selectedDog.DateOfBirth">
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-around">
+                            <div class="form-group col-md-6">
+                                <label>Фото</label>
+                                <div class="photo-less"></div>
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <label>Родословная</label>
+                                <div class="photo-less"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" ng-click="changeDogInfo()">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

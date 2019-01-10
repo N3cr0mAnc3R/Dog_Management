@@ -1,0 +1,16 @@
+﻿<form>
+    <label>Введите eMail:</label>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">&#64;</span>
+        </div><input type="email" class="form-control" ng-model="username" />
+    </div>
+    <br />
+    <label>Введите пароль:</label>
+    <input type="password" class="form-control" ng-model="password" />
+    <br />
+    <label>Повторите пароль:</label>
+    <input type="password" class="form-control" ng-model="passwordConfirm" />
+    <br />
+    <button class="btn btn-outline-primary" type="submit" ng-click="register(username, password, passwordConfirm, email)">Зарегистрироваться</button>
+</form>
